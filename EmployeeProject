@@ -1,0 +1,77 @@
+// Base class
+class Employee {
+    private int id;
+    private String name;
+    private String department;
+    private double salary;
+
+    // Constructor
+    Employee(int id, String name, String department, double salary) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    // Method to calculate annual salary
+    double calculateAnnualSalary() {
+        return salary * 12;
+    }
+
+    // Display details
+    void displayDetails() {
+        System.out.println(this);
+    }
+
+    // toString override
+    public String toString() {
+        return "ID: " + id + ", Name: " + name +
+               ", Dept: " + department + ", Salary: " + salary;
+    }
+}
+
+// Derived class (Inheritance)
+class Manager extends Employee {
+    private double bonus;
+
+    // Constructor
+    Manager(int id, String name, String department, double salary, double bonus) {
+        super(id, name, department, salary);
+        this.bonus = bonus;
+    }
+
+    // Override method
+    @Override
+    double calculateAnnualSalary() {
+        return super.calculateAnnualSalary() + bonus;
+    }
+
+    // Override toString
+    @Override
+    public String toString() {
+        return super.toString() + ", Bonus: " + bonus;
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+
+        // Create Employee object
+        Employee e = new Employee(101, "Sravanthi", "IT", 50000);
+
+        // Create Manager object
+        Manager m = new Manager(102, "Ravi", "HR", 60000, 20000);
+
+        // Display Employee details
+        System.out.println("Employee Details:");
+        e.displayDetails();
+
+        // Display Manager details
+        System.out.println("\nManager Details:");
+        m.displayDetails();
+
+        // Show annual salary
+        System.out.println("\nManager Annual Salary: " + m.calculateAnnualSalary());
+    }
+}
